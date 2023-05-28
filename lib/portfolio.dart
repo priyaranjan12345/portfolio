@@ -1,6 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:portfolio/app/utils/buildcontext_ext.dart';
+import 'package:portfolio/app/widgets/header_widget.dart';
+import 'package:portfolio/responsive.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Portfolio extends StatelessWidget {
@@ -25,7 +26,6 @@ class Portfolio extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/img/myimg.jpg"),
-            //fit: BoxFit.cover,
           ),
           shape: BoxShape.circle,
         ),
@@ -202,7 +202,7 @@ class Portfolio extends StatelessWidget {
   Widget _cvDownloadBtn() => ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          primary: Colors.indigo.shade900,
+          backgroundColor: Colors.indigo.shade900,
         ),
         child: const Padding(
           padding: EdgeInsets.symmetric(
@@ -223,81 +223,123 @@ class Portfolio extends StatelessWidget {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      _heading(context),
-                      _userImage(context),
-                      _myName(context),
-                      _contact(context),
-                      _cvDownloadBtn(),
-                      _aboutMe(context),
-                      _skills(context),
-                      _education(context),
-                      const Text("Github Projects Apis"),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          const ListTile(
-                            title: Text("Email"),
-                            subtitle: Text("priyaranjanmantri@gmail.com"),
+            child: ResponsiveBox(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Column(
+                      children: [
+                        Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: [
+                                const FlutterLogo(
+                                  size: 100,
+                                  duration: Duration(seconds: 1),
+                                  curve: Curves.easeIn,
+                                ),
+                                Flexible(
+                                  child: Text(
+                                    'Flutter Application Developer',
+                                    style: context.textTheme.headline5,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                          const ListTile(
-                            title: Text("Phone Number"),
-                            subtitle:
-                                Text("(+91) 9348394765, \n(+91) 7205413390"),
+                        ),
+                        Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: const [
+                                ListTile(
+                                  title: Text("Email"),
+                                  subtitle: Text("priyaranjanmantri@gmail.com"),
+                                ),
+                                ListTile(
+                                  title: Text("Phone Number"),
+                                  subtitle: Text(
+                                      "(+91) 9348394765, \n(+91) 7205413390"),
+                                ),
+                              ],
+                            ),
                           ),
-                          const Text("My Skills"),
-                          const Text("Programming Language"),
-                          Wrap(
-                            spacing: 40,
-                            runSpacing: 20,
-                            runAlignment: WrapAlignment.center,
-                            alignment: WrapAlignment.center,
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            children: const [
-                              Chip(label: Text("Java")),
-                              Chip(label: Text("Kotlin")),
-                              Chip(label: Text("Dart")),
-                              Chip(label: Text("Python")),
-                            ],
+                        ),
+                        Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                const Text(
+                                  "My Skills",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const Text("Programming Language"),
+                                Wrap(
+                                  spacing: 20,
+                                  runSpacing: 10,
+                                  runAlignment: WrapAlignment.center,
+                                  alignment: WrapAlignment.start,
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  children: const [
+                                    Chip(
+                                      label: Text("Java"),
+                                      elevation: 4,
+                                      backgroundColor: Colors.orange,
+                                    ),
+                                    Chip(
+                                      label: Text("Kotlin"),
+                                    ),
+                                    Chip(
+                                      label: Text("Dart"),
+                                    ),
+                                    Chip(
+                                      label: Text("Python"),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const Text("Tools And Frameworks"),
+                                Wrap(
+                                  spacing: 40,
+                                  runSpacing: 20,
+                                  runAlignment: WrapAlignment.center,
+                                  alignment: WrapAlignment.center,
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  children: const [
+                                    Chip(label: Text("Spring Boot")),
+                                    Chip(label: Text("Android Jetpack")),
+                                    Chip(label: Text("Flutter")),
+                                    Chip(label: Text("Fast API")),
+                                    Chip(label: Text("MySQL")),
+                                    Chip(label: Text("MongoDB")),
+                                  ],
+                                ),
+                                const Text("Experience"),
+                              ],
+                            ),
                           ),
-                          const Text("Tools And Frameworks"),
-                          Wrap(
-                            spacing: 40,
-                            runSpacing: 20,
-                            runAlignment: WrapAlignment.center,
-                            alignment: WrapAlignment.center,
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            children: const [
-                              Chip(label: Text("Spring Boot")),
-                              Chip(label: Text("Android Jetpack")),
-                              Chip(label: Text("Flutter")),
-                              Chip(label: Text("Fast API")),
-                              Chip(label: Text("MySQL")),
-                              Chip(label: Text("MongoDB")),
-                            ],
-                          ),
-                          const Text("Experience"),
-                        ],
-                      ),
+                        )
+                      ],
                     ),
                   ),
-                ),
-              ],
+                  const Expanded(
+                    flex: 2,
+                    child: HeaderWidget(),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
