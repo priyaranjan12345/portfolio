@@ -6,7 +6,8 @@ class UserImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 600),
       height: context.height * 0.34,
       width: context.width,
       decoration: const BoxDecoration(

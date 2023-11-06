@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/utils/buildcontext_ext.dart';
-import 'package:portfolio/app/widgets/header_widget.dart';
-import 'package:portfolio/responsive.dart';
+import 'package:portfolio/app/widgets/profile.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'app/widgets/responsive_box.dart';
 
 class Portfolio extends StatelessWidget {
   const Portfolio({Key? key}) : super(key: key);
@@ -219,26 +220,28 @@ class Portfolio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40.0),
-            child: ResponsiveBox(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    flex: 1,
+            child: ResponsiveWrap(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Flexible(
+                  flex: 2,
+                  child: ResponsiveBox(
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Card(
                           child: Padding(
                             padding: const EdgeInsets.all(10),
                             child: Row(
                               children: [
-                                const FlutterLogo(
-                                  size: 100,
-                                  duration: Duration(seconds: 1),
+                                FlutterLogo(
+                                  size: context.height * 0.1,
+                                  duration: const Duration(seconds: 1),
                                   curve: Curves.easeIn,
                                 ),
                                 Flexible(
@@ -251,12 +254,12 @@ class Portfolio extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Card(
+                        const Card(
                           child: Padding(
-                            padding: const EdgeInsets.all(20),
+                            padding: EdgeInsets.all(20),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: const [
+                              children: [
                                 ListTile(
                                   title: Text("Email"),
                                   subtitle: Text("priyaranjanmantri@gmail.com"),
@@ -283,18 +286,24 @@ class Portfolio extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                const Text("Programming Language"),
-                                Wrap(
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  child: Text(
+                                    "Programming Language",
+                                    style:
+                                        Theme.of(context).textTheme.labelLarge,
+                                  ),
+                                ),
+                                const Wrap(
                                   spacing: 20,
                                   runSpacing: 10,
                                   runAlignment: WrapAlignment.center,
                                   alignment: WrapAlignment.start,
                                   crossAxisAlignment: WrapCrossAlignment.center,
-                                  children: const [
+                                  children: [
                                     Chip(
                                       label: Text("Java"),
-                                      elevation: 4,
-                                      backgroundColor: Colors.orange,
                                     ),
                                     Chip(
                                       label: Text("Kotlin"),
@@ -305,19 +314,30 @@ class Portfolio extends StatelessWidget {
                                     Chip(
                                       label: Text("Python"),
                                     ),
+                                    Chip(
+                                      label: Text("JavaScript"),
+                                    ),
                                   ],
                                 ),
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                const Text("Tools And Frameworks"),
-                                Wrap(
-                                  spacing: 40,
-                                  runSpacing: 20,
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  child: Text(
+                                    "Tools And Frameworks",
+                                    style:
+                                        Theme.of(context).textTheme.labelLarge,
+                                  ),
+                                ),
+                                const Wrap(
+                                  spacing: 20,
+                                  runSpacing: 10,
                                   runAlignment: WrapAlignment.center,
-                                  alignment: WrapAlignment.center,
+                                  alignment: WrapAlignment.start,
                                   crossAxisAlignment: WrapCrossAlignment.center,
-                                  children: const [
+                                  children: [
                                     Chip(label: Text("Spring Boot")),
                                     Chip(label: Text("Android Jetpack")),
                                     Chip(label: Text("Flutter")),
@@ -326,7 +346,6 @@ class Portfolio extends StatelessWidget {
                                     Chip(label: Text("MongoDB")),
                                   ],
                                 ),
-                                const Text("Experience"),
                               ],
                             ),
                           ),
@@ -334,12 +353,14 @@ class Portfolio extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Expanded(
-                    flex: 2,
-                    child: HeaderWidget(),
+                ),
+                const Flexible(
+                  flex: 4,
+                  child: ResponsiveBox(
+                    child: Profile(),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
